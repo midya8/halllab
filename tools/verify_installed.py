@@ -32,3 +32,16 @@ if len(sys.argv)>2:
             v=subprocess.run(cmd+['-','--verify'],input=r.stdout,cwd=tmp,env=env,capture_output=True,text=True,check=True)
             assert json.loads(v.stdout)==dict(valid=True,schema='halllab-overlaps-v1')
         print('Installed overlaps: 9 controls through module CLI generation/verification, fourth site-packages module origin, outside checkout')
+
+if len(sys.argv)>3:
+    conflict_controls=json.loads(Path(sys.argv[3]).read_text())
+    with tempfile.TemporaryDirectory() as tmp:
+        script='import halllab.conflicts;print(halllab.conflicts.__file__)'
+        origin=subprocess.run([sys.executable,'-c',script],cwd=tmp,env=env,text=True,capture_output=True,check=True).stdout.strip()
+        assert 'site-packages' in origin
+        for c in conflict_controls:
+            cmd=[sys.executable,'-m','halllab.conflicts']
+            r=subprocess.run(cmd+['-'],input=json.dumps(c['input']),cwd=tmp,env=env,capture_output=True,text=True,check=True)
+            v=subprocess.run(cmd+['-','--verify'],input=r.stdout,cwd=tmp,env=env,capture_output=True,text=True,check=True)
+            assert json.loads(v.stdout)==dict(valid=True,schema='halllab-conflicts-v1')
+        print('Installed conflicts: 9 controls through module generation/verification, fifth site-packages origin, outside checkout')
