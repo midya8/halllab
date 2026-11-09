@@ -50,3 +50,11 @@ At most six variables/eight values; one all-different relation, not a complete c
 [Separate interactive scope-network inspector](https://midya8.github.io/halllab/overlaps.html) · [Exact overlap contract](OVERLAPS.md)
 
 Every scope gets its own complete local report in every synchronous propagation round, then retained domains are intersected until fixed point. An independent full-assignment oracle checks the common relation. Inspect the locally viable but impossible two-color triangle, or a satisfiable triangle where local scopes still miss joint pruning. Every scope-only witness is mapped back to original variables, never presented as a joint solution. New API `halllab.overlap.overlaps` / `verify_overlaps` and `python -m halllab.overlap`; original v1 reports and test sources stay unchanged. Twenty native tests and six Node/Chrome tests now cover both report families. Tiny exact enumeration, not a production multi-constraint solver.
+
+## Every conflict, every minimal removal
+
+[Conflict and removal inspector](https://midya8.github.io/halllab/conflicts.html) · [Exact contract and seven-source ledger](CONFLICTS.md)
+
+The overlapping network can now explain every inclusion-minimal conflicting scope set and every inclusion-minimal removal that repairs the whole network. Each conflict has full single-deletion witnesses; each removal has a common assignment and contained-conflict witnesses for every restoration. Inspect all active-scope subsets and hitting-set intersections. Minimal is not minimum: the default diamond has one size-one and four size-two minimal removals. Domains stay fixed; an empty-domain background cannot be repaired by scope removal.
+
+Separate `halllab.conflicts` API/checker/module CLI. Both earlier report families and test sources preserved. 28 native tests, nine Node/Chrome tests, installed generation/verification for all three report families. At most 64 scope subsets and 262144 original tuples, not a scalable MUS/MCS solver or weighted optimizer.
