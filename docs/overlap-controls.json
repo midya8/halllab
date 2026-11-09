@@ -1,0 +1,11 @@
+[
+ {"name":"An impossible two-slot triangle","why":"Every scope has two full local supports. Repeating local GAC removes nothing, yet no assignment satisfies all three scopes together.","input":{"values":2,"domains":[[0,1],[0,1],[0,1]],"scopes":[[0,1],[1,2],[0,2]]}},
+ {"name":"A satisfiable triangle still hides pruning","why":"Only x2=v2 has joint support. Each binary scope separately supports x2=v0 and x2=v1, so the local fixed point misses them.","input":{"values":3,"domains":[[0,1],[0,1],[0,1,2]],"scopes":[[0,1],[1,2],[0,2]]}},
+ {"name":"One global triangle scope","why":"Same distinctness solution set as three binary scopes, stronger single-scope propagation. Both variants run their full fixed-point procedure.","input":{"values":3,"domains":[[0,1],[0,1],[0,1,2]],"scopes":[[0,1,2]]}},
+ {"name":"Propagation crosses scopes","why":"x0 forces x1, then x1 forces x2, then x2 forces x3. Synchronous rounds show every update rather than hiding the worklist.","input":{"values":4,"domains":[[0],[0,1],[1,2],[2,3]],"scopes":[[0,1],[1,2],[2,3]]}},
+ {"name":"Unscoped variables may repeat values","why":"Only x0 and x1 must differ. x2 may equal either. The whole tuple is not one global all-different constraint.","input":{"values":2,"domains":[[0,1],[0,1],[0,1]],"scopes":[[0,1]]}},
+ {"name":"An unrelated empty domain","why":"The nonempty scope has local supports, but the unscoped empty domain still prevents any full assignment. Local-consistent verdict includes all domains.","input":{"values":2,"domains":[[0,1],[0,1],[]],"scopes":[[0,1]]}},
+ {"name":"No scopes","why":"Every Cartesian tuple is allowed, including repeated values. Local propagation changes nothing.","input":{"values":2,"domains":[[0,1],[0,1]],"scopes":[]}},
+ {"name":"Empty scope and empty tuple","why":"The empty all-different constraint and empty assignment both hold. One joint solution, no edges.","input":{"values":0,"domains":[],"scopes":[[]]}},
+ {"name":"Maximum Cartesian family","why":"Six variables and eight values, no scopes: 262144 full assignments. This is a tiny enumeration cap, not a scalability result.","input":{"values":8,"domains":[[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7]],"scopes":[]}}
+]

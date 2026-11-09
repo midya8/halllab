@@ -44,3 +44,9 @@ assert verify(report)  # exhaustive independent oracle, no matching calls
 ## Limits before interpretation
 
 At most six variables/eight values; one all-different relation, not a complete constraint solver. Classic matching/Hall theory, not a new AI algorithm. Native repeated DFS matching queries plus bitmask counting versus independent exhaustive native checker and JavaScript assignment recursion. No Régin SCC, Hopcroft-Karp, Choco or NetworkX implementation/integration. No scalability benchmark, learned model, real assignment deployment or whole-CSP guarantee. A full match for one constraint does not ensure a shared solution for several constraints. MIT license.
+
+## Overlapping scopes: local is not joint
+
+[Separate interactive scope-network inspector](https://midya8.github.io/halllab/overlaps.html) · [Exact overlap contract](OVERLAPS.md)
+
+Every scope gets its own complete local report in every synchronous propagation round, then retained domains are intersected until fixed point. An independent full-assignment oracle checks the common relation. Inspect the locally viable but impossible two-color triangle, or a satisfiable triangle where local scopes still miss joint pruning. Every scope-only witness is mapped back to original variables, never presented as a joint solution. New API `halllab.overlap.overlaps` / `verify_overlaps` and `python -m halllab.overlap`; original v1 reports and test sources stay unchanged. Twenty native tests and six Node/Chrome tests now cover both report families. Tiny exact enumeration, not a production multi-constraint solver.

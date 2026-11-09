@@ -20,3 +20,15 @@ with tempfile.TemporaryDirectory() as tmp:
             assert json.loads(v.stdout)==dict(valid=True,schema='halllab-v1')
         assert generated[0]==generated[1]
     print('Installed: 10 controls, both CLI entry points generation/verification, three site-packages origins, outside checkout')
+if len(sys.argv)>2:
+    scope_controls=json.loads(Path(sys.argv[2]).read_text())
+    with tempfile.TemporaryDirectory() as tmp:
+        script='import halllab.overlap;print(halllab.overlap.__file__)'
+        origin=subprocess.run([sys.executable,'-c',script],cwd=tmp,env=env,text=True,capture_output=True,check=True).stdout.strip()
+        assert 'site-packages' in origin
+        for c in scope_controls:
+            cmd=[sys.executable,'-m','halllab.overlap']
+            r=subprocess.run(cmd+['-'],input=json.dumps(c['input']),cwd=tmp,env=env,capture_output=True,text=True,check=True)
+            v=subprocess.run(cmd+['-','--verify'],input=r.stdout,cwd=tmp,env=env,capture_output=True,text=True,check=True)
+            assert json.loads(v.stdout)==dict(valid=True,schema='halllab-overlaps-v1')
+        print('Installed overlaps: 9 controls through module CLI generation/verification, fourth site-packages module origin, outside checkout')
