@@ -1,0 +1,364 @@
+[
+  {
+    "name": "Two conflicts share one scope",
+    "input": {
+      "values": 2,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "scopes": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "why": "Two triangles share C0. Removing C0 alone repairs both. Four other minimal repairs remove two scopes. Minimal is not minimum, and breaking just one conflict is not enough."
+  },
+  {
+    "name": "Independent triangles need two removals",
+    "input": {
+      "values": 2,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "scopes": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    "why": "Two disjoint minimal conflicts. Every repair must hit both; nine inclusion-minimal repairs remove one scope from each triangle."
+  },
+  {
+    "name": "Different sizes of minimal conflict",
+    "input": {
+      "values": 2,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "scopes": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ]
+      ]
+    },
+    "why": "The global scope alone conflicts, and the three pair scopes form another minimal conflict. A three-scope conflict can be minimal without being smallest."
+  },
+  {
+    "name": "One all-different Hall failure",
+    "input": {
+      "values": 2,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "scopes": [
+        [
+          0,
+          1,
+          2
+        ]
+      ]
+    },
+    "why": "Three variables cannot take distinct values from two slots. Removing the sole scope admits repeated values; no domain was changed."
+  },
+  {
+    "name": "Fixed empty domain cannot be repaired",
+    "input": {
+      "values": 2,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        []
+      ],
+      "scopes": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "why": "Domains are hard background. Even zero active scopes has no full assignment. The empty foreground conflict has no deletion witnesses, and there is no scope-removal repair."
+  },
+  {
+    "name": "Already satisfiable",
+    "input": {
+      "values": 3,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "scopes": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "why": "No minimal conflict. The only minimal removal is the empty set: keep every scope. Its full common witness remains visible."
+  },
+  {
+    "name": "Empty problem, one empty scope",
+    "input": {
+      "values": 0,
+      "domains": [],
+      "scopes": [
+        []
+      ]
+    },
+    "why": "The empty tuple satisfies the empty scope. No conflict; the empty removal is a valid repair with the empty assignment."
+  },
+  {
+    "name": "Maximum original tuple family",
+    "input": {
+      "values": 8,
+      "domains": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "scopes": []
+    },
+    "why": "No scopes: all 262144 original full tuples are valid. No conflicts, one empty removal, and repeated values in the complete witness are permitted."
+  },
+  {
+    "name": "Six scopes, all already satisfied",
+    "input": {
+      "values": 6,
+      "domains": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ],
+        [
+          5
+        ]
+      ],
+      "scopes": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ],
+        [
+          5
+        ]
+      ]
+    },
+    "why": "All 64 active-scope subsets have one common assignment. Singleton all-different scopes impose no distinctness between different variables."
+  }
+]
