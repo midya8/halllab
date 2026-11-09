@@ -43,7 +43,7 @@ class HallTests(unittest.TestCase):
         r=analyze(CONTROLS[1]['input']);self.assertFalse(r['satisfiable']);self.assertEqual(r['maximum_size'],2);self.assertEqual(r['filtered'],[[],[],[]]);self.assertEqual(r['pairwise_rounds'][-1],[[0,1]]*3)
     def test_matching_independent_checker(self):
         r=analyze(CONTROLS[0]['input'])
-        with patch('halllab.core.cardinality',side_effect=AssertionError),patch('halllab.core.analyze',side_effect=AssertionError),patch('halllab.core.halls',side_effect=AssertionError),patch('halllab.core.pairwise',side_effect=AssertionError): self.assertTrue(verify(r))
+        with patch('halllab.core.cardinality',side_effect=AssertionError),patch('halllab.core.analyze',side_effect=AssertionError),patch('halllab.core.halls',side_effect=AssertionError),patch('halllab.core.pairwise',side_effect=AssertionError),patch('halllab.core.canonical',side_effect=AssertionError),patch('halllab.core.count_assignments',side_effect=AssertionError): self.assertTrue(verify(r))
     def test_invalid_input(self):
         bad=[None,[],{},dict(values=True,domains=[]),dict(values=9,domains=[]),dict(values=1,domains=[[True]]),dict(values=2,domains=[[1,0]]),dict(values=2,domains=[[0,0]]),dict(values=1,domains=[[1]]),dict(values=0,domains=[[]]*7),dict(values=0,domains=[],extra=1)]
         for data in bad:
