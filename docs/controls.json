@@ -1,0 +1,12 @@
+[
+ {"name":"A pair reserves two values","why":"No singleton exists. Pairwise AC leaves x2 with three values; global support removes v0 and v1.","input":{"values":3,"domains":[[0,1],[0,1],[0,1,2]]}},
+ {"name":"Three tasks, only two slots","why":"Every binary disequality has support, but a Hall deficiency rules out all injective assignments.","input":{"values":3,"domains":[[0,1],[0,1],[0,1]]}},
+ {"name":"An augmenting reassignment","why":"A greedy x0=v0 would strand x1; exact matching instead reassigns x0 to v1.","input":{"values":2,"domains":[[0,1],[0]]}},
+ {"name":"Two interchangeable assignments","why":"All four edges have a full assignment witness. A chosen matching is not the only solution.","input":{"values":2,"domains":[[0,1],[0,1]]}},
+ {"name":"Surplus value is allowed","why":"Distinct does not mean surjective. Unused values remain legal.","input":{"values":4,"domains":[[0,1],[1,2],[2,3]]}},
+ {"name":"An empty domain","why":"An empty domain certifies failure immediately. Synchronous binary propagation can then empty other domains.","input":{"values":2,"domains":[[],[0,1]]}},
+ {"name":"Empty scope, one empty tuple","why":"The empty assignment satisfies the empty all-different constraint; count is one, maximum size is zero.","input":{"values":0,"domains":[]}},
+ {"name":"Singleton cascade","why":"Full synchronous pairwise rounds show ordinary binary propagation is not deliberately stopped early.","input":{"values":4,"domains":[[0],[0,1],[1,2],[2,3]]}},
+ {"name":"A noninterval Hall set","why":"Holes matter: x0 and x1 reserve {v0,v2}, so x2 can only use v1. No bounds-only claim.","input":{"values":3,"domains":[[0,2],[0,2],[0,1,2]]}},
+ {"name":"Maximum supported family","why":"Six variables each allow eight values: 20,160 complete injective assignments; all 48 edges supported.","input":{"values":8,"domains":[[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6,7]]}}
+]

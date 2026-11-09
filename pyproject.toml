@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "halllab"
+version = "0.1.0"
+description = "Exact tiny all-different supports with matching and Hall witnesses"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+[project.scripts]
+halllab = "halllab.__main__:main"
+[tool.setuptools]
+packages = ["halllab"]
