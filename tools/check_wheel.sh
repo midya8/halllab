@@ -7,3 +7,4 @@ python -m pip wheel --no-deps --wheel-dir "$tmp/wheels" "$root"
 python -m venv "$tmp/venv"
 "$tmp/venv/bin/python" -m pip install --no-deps "$tmp"/wheels/*.whl
 "$tmp/venv/bin/python" "$root/tools/verify_installed.py" "$root/docs/controls.json" "$root/docs/overlap-controls.json" "$root/docs/conflict-controls.json"
+"$tmp/venv/bin/python" "$root/tools/verify_alternating_installed.py" "$root/docs/alternating-controls.json"

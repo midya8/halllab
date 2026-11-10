@@ -1,0 +1,262 @@
+[
+  {
+    "name": "Surplus is not a cycle",
+    "description": "One variable, two values. The unmatched value supports its edge through a free-value path, though each alternating SCC is a singleton.",
+    "input": {
+      "values": 2,
+      "domains": [
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "name": "Tight Hall bottleneck",
+    "description": "Two variables reserve values 0 and 1; neither edge from those values to x2 is supported.",
+    "input": {
+      "values": 3,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ]
+      ]
+    }
+  },
+  {
+    "name": "Alternating cycle",
+    "description": "Flipping the four-edge alternating cycle exchanges both assignments.",
+    "input": {
+      "values": 2,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "name": "Long free path",
+    "description": "The free value can start a longer chain of matching changes.",
+    "input": {
+      "values": 4,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    }
+  },
+  {
+    "name": "Matched does not mean supported",
+    "description": "Maximum partial matching covers two variables, not all three. No original edge has a complete support.",
+    "input": {
+      "values": 2,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "name": "Disconnected support mechanisms",
+    "description": "One component has a cycle, another uses surplus paths, and isolated values stay visible.",
+    "input": {
+      "values": 7,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    }
+  },
+  {
+    "name": "Noninterval domains",
+    "description": "Values 0, 2 and 5 make the alternating graph independent of interval bounds.",
+    "input": {
+      "values": 6,
+      "domains": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          2,
+          5
+        ]
+      ]
+    }
+  },
+  {
+    "name": "Empty domain",
+    "description": "An empty domain is an explicit Hall obstruction, not a missing variable.",
+    "input": {
+      "values": 3,
+      "domains": [
+        [
+          0,
+          1
+        ],
+        []
+      ]
+    }
+  },
+  {
+    "name": "Empty scope",
+    "description": "The empty tuple is a full matching. All supplied values are free isolated vertices.",
+    "input": {
+      "values": 3,
+      "domains": []
+    }
+  },
+  {
+    "name": "Empty universe",
+    "description": "No variables and no values: one empty matching, no arcs or components.",
+    "input": {
+      "values": 0,
+      "domains": []
+    }
+  },
+  {
+    "name": "Unique matching",
+    "description": "Every matched edge is supported but need not lie on an alternating cycle.",
+    "input": {
+      "values": 3,
+      "domains": [
+        [
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    }
+  },
+  {
+    "name": "Full bounded graph",
+    "description": "Six variables and eight values; all 48 original edges have explicit full support.",
+    "input": {
+      "values": 8,
+      "domains": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      ]
+    }
+  }
+]
