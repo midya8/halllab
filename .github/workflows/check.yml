@@ -1,5 +1,8 @@
 name: Check finite all-different witnesses
 on: [push, pull_request]
+concurrency:
+  group: halllab-check-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -26,3 +29,15 @@ jobs:
         with:
           node-version: '22'
       - run: npm test
+  external-reference:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: PYTHONPATH=. python tools/check_choco.py
