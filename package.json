@@ -1,1 +1,7 @@
-{"private": true, "type": "module", "scripts": {"test": "node --test tests/test_engine.mjs tests/test_browser.cjs tests/test_overlap.mjs tests/test_overlap_browser.cjs tests/test_conflicts.mjs tests/test_conflicts_browser.cjs"}}
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/test_engine.mjs tests/test_browser.cjs tests/test_overlap.mjs tests/test_overlap_browser.cjs tests/test_conflicts.mjs tests/test_conflicts_browser.cjs tests/test_alternating.mjs tests/test_alternating_browser.cjs"
+  }
+}
