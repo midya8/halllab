@@ -1,6 +1,13 @@
 # HallLab
 
-**Distinct is a global promise.** Inspect exact all-different propagation for tiny constraint-based AI assignment problems. Every retained variable/value has a complete injective assignment. Every pruned edge has a forced-residual Hall obstruction. Compare against full synchronous pairwise arc consistency, not a weakened one-pass baseline.
+HallLab computes exact all-different support for supplied tiny variable domains. Every retained variable/value pair belongs to a complete injective assignment. Every pruned pair has a forced-residual Hall obstruction. The comparison uses full synchronous pairwise arc consistency, not a one-pass baseline.
+
+Four separate workflows answer different questions:
+
+- [One scope](METHOD.md): which edges belong to a complete assignment?
+- [Overlapping scopes](OVERLAPS.md): where does local propagation miss joint inconsistency or pruning?
+- [Conflicts and removals](CONFLICTS.md): which minimal sets of scopes conflict, and which removals repair the network?
+- [Alternating support](ALTERNATING.md): how do matching cycles and paths from spare values retain edges?
 
 [Interactive inspector](https://midya8.github.io/halllab/) · [Exact method, boundaries and six-source ledger](METHOD.md)
 
@@ -30,7 +37,7 @@ assert report["filtered"] == [[0, 1], [0, 1], [2]]
 assert verify(report)  # exhaustive independent oracle, no matching calls
 ```
 
-## Visible evidence
+## What the one-scope inspector shows
 
 - Maximum-cardinality matching, canonical ties and exact complete-assignment count.
 - All original edges with either first full support assignment or first forced-residual deficient subset.
@@ -39,7 +46,7 @@ assert verify(report)  # exhaustive independent oracle, no matching calls
 - Original synthetic controls for hidden Hall bottlenecks, noninterval domains, surplus values, reassignment, symmetric supports, empty domain/scope, cascade and full 48-edge scope.
 - Strict bounded JSON CLI, atomic output and exact report verification. Edits/invalid input clear stale browser reports.
 
-12 native tests, including 8,777 exhaustive domain graphs and 120 seeded larger inputs; 682 full Python/JS report comparisons; Chrome replays every edge/subset/round at three widths. Fresh installed reproduction and CI span Python 3.10-3.13. [METHOD.md](METHOD.md) gives actual counts, semantics and source attribution.
+The original 12 native tests, retained in the current suite of 36, cover 8,777 exhaustive domain graphs and 120 seeded larger inputs. There are 682 full Python/JS report comparisons; Chrome replays every edge/subset/round at three widths. Fresh installed reproduction and CI span Python 3.10-3.13. [METHOD.md](METHOD.md) gives actual counts, semantics and source attribution.
 
 ## Limits before interpretation
 
@@ -49,7 +56,7 @@ At most six variables/eight values; one all-different relation, not a complete c
 
 [Separate interactive scope-network inspector](https://midya8.github.io/halllab/overlaps.html) · [Exact overlap contract](OVERLAPS.md)
 
-Every scope gets its own complete local report in every synchronous propagation round, then retained domains are intersected until fixed point. An independent full-assignment oracle checks the common relation. Inspect the locally viable but impossible two-color triangle, or a satisfiable triangle where local scopes still miss joint pruning. Every scope-only witness is mapped back to original variables, never presented as a joint solution. New API `halllab.overlap.overlaps` / `verify_overlaps` and `python -m halllab.overlap`; original v1 reports and test sources stay unchanged. Twenty native tests and six Node/Chrome tests now cover both report families. Tiny exact enumeration, not a production multi-constraint solver.
+Every scope gets its own complete local report in every synchronous propagation round, then retained domains are intersected until fixed point. An independent full-assignment oracle checks the common relation. Inspect the locally viable but impossible two-color triangle, or a satisfiable triangle where local scopes still miss joint pruning. Every scope-only witness is mapped back to original variables, never presented as a joint solution. New API `halllab.overlap.overlaps` / `verify_overlaps` and `python -m halllab.overlap`; original v1 reports and test sources stay unchanged. The first two report families had twenty native tests and six Node/Chrome tests; these remain in the current suite. Tiny exact enumeration, not a production multi-constraint solver.
 
 ## Every conflict, every minimal removal
 
@@ -57,7 +64,7 @@ Every scope gets its own complete local report in every synchronous propagation 
 
 The overlapping network can now explain every inclusion-minimal conflicting scope set and every inclusion-minimal removal that repairs the whole network. Each conflict has full single-deletion witnesses; each removal has a common assignment and contained-conflict witnesses for every restoration. Inspect all active-scope subsets and hitting-set intersections. Minimal is not minimum: the default diamond has one size-one and four size-two minimal removals. Domains stay fixed; an empty-domain background cannot be repaired by scope removal.
 
-Separate `halllab.conflicts` API/checker/module CLI. Both earlier report families and test sources preserved. 28 native tests, nine Node/Chrome tests, installed generation/verification for all three report families. At most 64 scope subsets and 262144 original tuples, not a scalable MUS/MCS solver or weighted optimizer.
+Separate `halllab.conflicts` API/checker/module CLI. Both earlier report families and test sources preserved. The first three report families had 28 native tests and nine Node/Chrome tests, with installed generation/verification; these checks remain in the current suite. At most 64 scope subsets and 262144 original tuples, not a scalable MUS/MCS solver or weighted optimizer.
 
 ## A spare value is not a cycle
 
@@ -65,4 +72,4 @@ Separate `halllab.conflicts` API/checker/module CLI. Both earlier report familie
 
 One variable with two values has three singleton alternating SCCs, yet both edges are supported: the spare value starts an even alternating path. Inspect the canonical maximum matching, every directed original edge, free-value BFS layers, SCC cycles, dummy-node equivalent classes and every explicit cycle/path flip into a complete assignment. Rejected edges retain forced-residual Hall obstructions. A maximum partial matching in an impossible graph never masquerades as support.
 
-Separate `halllab.alternating` API/checker/module CLI and `halllab-alternating` console command. Native augmenting matching/Tarjan versus independent exhaustive partial tuples/Floyd and browser recursion/BFS. 36 Python and 12 Node/Chrome tests retain all previous tests; 5,058 exhaustive tiny graphs, 821 complete cross-language reports, 136 individually rejected primitive forgeries, installed-wheel atomic checks and real trusted downloads. Optional actual pinned Choco4.10.18 AC_REGIN propagation agrees over 821 cases, with FC/NEQS/AC strength calibrations. Six variables/eight values, classic theory, not a novel solver or scale claim. The original three workflows remain separate; their historical limits above describe those original implementations.
+Separate `halllab.alternating` API/checker/module CLI and `halllab-alternating` console command. Native augmenting matching/Tarjan versus independent exhaustive partial tuples/Floyd and browser recursion/BFS. 36 Python and 12 Node/Chrome tests retain all previous tests; 5,058 exhaustive tiny graphs, 821 complete cross-language reports, 136 individually rejected primitive forgeries, installed-wheel atomic checks and real trusted downloads. Optional actual pinned Choco 4.10.18 AC_REGIN propagation agrees over 821 cases, with FC/NEQS/AC strength calibrations. Six variables/eight values, classic theory, not a novel solver or scale claim. The original three workflows remain separate; their historical limits above describe those original implementations.

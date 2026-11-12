@@ -1,4 +1,4 @@
-# HallLab method and source ledger
+# HallLab one-scope method and sources
 
 ## Exact finite contract
 
